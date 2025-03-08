@@ -1,16 +1,21 @@
 class User < ApplicationRecord
-  has_secure_password
+  SIGN_UP_REQUIRE_ATTRIBUTES = %i(email password
+password_confirmation avatar).freeze
+ 
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy
   has_one :cart, dependent: :destroy
 
   enum role: {customer: 0, admin: 1}
 
+  has_secure_password
+
   validates :full_name,
             length: {maximum: Settings.value.max_name}
 
   validates :phone_number,
-            format: {with: Settings.value.phone_format}
+            format: {with: Settings.value.phone_format},
+            allow_blank: true
 
   validates :email,
             presence: true,

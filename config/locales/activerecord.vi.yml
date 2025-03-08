@@ -27,7 +27,6 @@ vi:
         name: "Tên sản phẩm"
         desc: "Mô tả"
         price: "Giá"
-        stock: "Số lượng"
         rating: "Đánh giá"
         category: "Danh mục"
       cart:
@@ -60,3 +59,37 @@ vi:
         user: "Người dùng"
         rating: "Đánh giá"
         comment: "Nhận xét"
+  errors:
+    models:
+      user:
+        attributes:
+          email:
+            taken: "Email đã được sử dụng"
+            blank: "Email không được để trống"
+          password:
+            blank: "Mật khẩu không được để trống"
+            too_short: "Mật khẩu quá ngắn (ít nhất 6 ký tự)"
+      address:
+        attributes:
+          receiver_name:
+            blank: "Tên người nhận không được để trống"
+          place:
+            blank: "Địa chỉ không được để trống"
+          phone:
+            blank: "Số điện thoại không được để trống"
+      product:
+        attributes:
+          name:
+            blank: "Tên sản phẩm không được để trống"
+          price:
+            blank: "Giá không được để trống"
+          category:
+            blank: "Danh mục không được để trống"
+    messages:
+      taken: "đã được sử dụng"
+      blank: "không được để trống"
+      too_short: "quá ngắn"
+      invalid: "không hợp lệ"
+      not_a_number: "phải là một số"
+      greater_than: "phải lớn hơn %{count}"
+      less_than: "phải nhỏ hơn %{count}"

@@ -4,4 +4,7 @@ vi:
       auths:
         login:
           success: "Đăng nhập thành công"
-          failure: "Sai tên đăng nhập hoặc mật khẩu"
+          failure: "Tên đăng nhập hoặc mật khẩu không đúng"
+        sign_up:
+          success: "Đăng ký thành công"
+          failure: "Đăng ký thất bại"

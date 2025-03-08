@@ -5,3 +5,6 @@ en:
         login:
           success: "Login successful"
           failure: "Invalid username or password"
+        sign_up:
+          success: "Sign up successful"
+          failure: "Sign up failed"
