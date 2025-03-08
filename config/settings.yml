@@ -1,0 +1,10 @@
+value:
+  max_name: 255
+  min_user_password: 8
+  max_place_length: 500
+  max_receiver_name: 300
+  valid_email: !ruby/regexp /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  phone_format: !ruby/regexp /\A\d{10}\z/
+  reset_expired_time: 2
+  valid_date: !ruby/regexp /^\d{2}-\d{2}-\d{4}$/
+  valid_url: !ruby/regexp /\Ahttps?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)\z/

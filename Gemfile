@@ -5,6 +5,8 @@ ruby "3.2.2"
 
 gem "bootsnap", require: false
 gem "concurrent-ruby", "1.3.4" 
+gem "bcrypt", "~> 3.1.7"
+gem "config"
 gem "importmap-rails"
 gem "jbuilder"
 gem "pg", "~> 1.1"
