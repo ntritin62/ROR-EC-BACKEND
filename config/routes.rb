@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       namespace :v1 do
         post "login", to: "auths#login"
         post "signup", to: "auths#sign_up"
+        put "update_user", to: "auths#update"
       end
     end
   end

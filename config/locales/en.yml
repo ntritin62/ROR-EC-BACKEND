@@ -1,5 +1,8 @@
 en:
   api:
+    errors:
+      login_required: "Please log in to continue."
+      forbidden_access: "You do not have permission to access this resource."
     v1:
       auths:
         login:
@@ -8,3 +11,6 @@ en:
         sign_up:
           success: "Sign up successful"
           failure: "Sign up failed"
+        update:
+          success: "User updated successfully"
+          failure: "Failed to update user"

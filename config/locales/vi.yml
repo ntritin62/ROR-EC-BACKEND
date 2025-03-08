@@ -1,5 +1,8 @@
 vi:
   api:
+    errors:
+      login_required: "Vui lòng đăng nhập để tiếp tục."
+      forbidden_access: "Bạn không có quyền truy cập vào tài nguyên này."
     v1:
       auths:
         login:
@@ -8,3 +11,6 @@ vi:
         sign_up:
           success: "Đăng ký thành công"
           failure: "Đăng ký thất bại"
+        update:
+          success: "Cập nhật người dùng thành công"
+          failure: "Cập nhật người dùng thất bại"

@@ -1,6 +1,7 @@
 class Api::V1::AuthsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_user, only: :login
+  before_action :authenticate_user!, :user_update_params, only: :update
   def login
     if @user&.authenticate(params[:password])
       render_json(
@@ -37,6 +38,24 @@ class Api::V1::AuthsController < ApplicationController
     end
   end
 
+  def update
+    if @current_user.update(user_update_params)
+      render_json(
+        status: :ok,
+        message: t(".success"),
+        data: @user,
+        http_status: :ok
+      )
+    else
+      render_json(
+        status: :unprocessable_entity,
+        message: t(".failure"),
+        errors: @user.errors.full_messages,
+        http_status: :unprocessable_entity
+      )
+    end
+  end
+
   private
   def set_user
     @user = User.find_by(email: params[:email])
@@ -44,5 +63,9 @@ class Api::V1::AuthsController < ApplicationController
 
   def user_params
     params.permit User::SIGN_UP_REQUIRE_ATTRIBUTES
+  end
+
+  def user_update_params
+    params.require(:user).permit(:full_name, :phone_number)
   end
 end
