@@ -22,4 +22,12 @@ class User < ApplicationRecord
             presence: true,
             length: {minimum: Settings.value.min_user_password},
             allow_nil: true
+
+  after_create :create_cart_for_user
+
+  private
+  def create_cart_for_user
+    # Tạo cart cho user sau khi user được tạo
+    self.create_cart
+  end        
 end

@@ -6,6 +6,10 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+if Rails.env.development? || Rails.env.test?
+  Dotenv::Rails.load
+end
+
 module ECBackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -18,5 +22,6 @@ module ECBackend
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths << Rails.root.join('lib')
   end
 end

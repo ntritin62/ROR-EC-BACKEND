@@ -8,3 +8,4 @@ value:
   reset_expired_time: 2
   valid_date: !ruby/regexp /^\d{2}-\d{2}-\d{4}$/
   valid_url: !ruby/regexp /\Ahttps?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)\z/
+algorithm: "HS256"
