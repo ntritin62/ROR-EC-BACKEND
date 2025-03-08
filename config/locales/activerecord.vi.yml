@@ -1,0 +1,62 @@
+vi:
+  activerecord:
+    models:
+      user: "Người dùng"
+      address: "Địa chỉ"
+      product: "Sản phẩm"
+      cart: "Giỏ hàng"
+      cart_item: "Mặt hàng trong giỏ"
+      order: "Đơn hàng"
+      order_item: "Mặt hàng trong đơn"
+    attributes:
+      user:
+        full_name: "Họ tên"
+        email: "Email"
+        phone: "Số điện thoại"
+        password: "Mật Khẩu"
+        password_confirmation: "Mật khẩu xác nhận"
+        role: "Vai trò"
+      address:
+        receiver_name: "Tên người nhận"
+        place: "Địa chỉ"
+        phone: "Số điện thoại"
+        default: "Mặc định"
+      category:
+        name: "Tên danh mục"
+      product:
+        name: "Tên sản phẩm"
+        desc: "Mô tả"
+        price: "Giá"
+        stock: "Số lượng"
+        rating: "Đánh giá"
+        category: "Danh mục"
+      cart:
+        user: "Người dùng"
+      cart_item:
+        product: "Sản phẩm"
+        cart: "ID giỏ hàng"
+        quantity: "Số lượng"
+      order:
+        user: "Người dùng"
+        address: "Địa chỉ"
+        payment_method: "Phương thức thanh toán"
+        status: "Trạng thái"
+        total: "Tổng tiền"
+        cancel_reason: "Lý do hủy"
+        statuses:
+          pending: "Đang chờ"
+          confirmed: "Đã xác nhận"
+          preparing: "Đang chuẩn bị"
+          delivering: "Đang giao"
+          delivered: "Đã giao"
+          cancelled: "Đã hủy"
+      order_item:
+        product: "Sản phẩm"
+        order: "Đơn hàng"
+        quantity: "Số lượng"
+        price: "Giá"
+      review:
+        product: "Sản phẩm"
+        user: "Người dùng"
+        rating: "Đánh giá"
+        comment: "Nhận xét"

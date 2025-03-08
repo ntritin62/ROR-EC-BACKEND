@@ -3,11 +3,22 @@ class Api::V1::AuthsController < ApplicationController
   before_action :set_user, only: :login
   def login
     if @user&.authenticate(params[:password])
-      render json: { jwt_token: Authentication.encode({ user_id: @user.id }) }, status: :ok
+      render_json(
+        status: :ok, 
+        message: t(".success"), 
+        data: { jwt_token: Authentication.encode({ user_id: @user.id }) },
+        http_status: :ok
+      )
     else
-      render json: { error: "Sai mật khẩu" }, status: :unauthorized
+      render_json(
+        status: :unauthorized, 
+        message: t(".failure"), 
+        errors: {detail: t(".failure")},
+        http_status: :unauthorized
+      )
     end
   end
+  
 
   private
   def set_user

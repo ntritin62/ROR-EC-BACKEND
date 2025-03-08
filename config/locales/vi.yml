@@ -1,0 +1,7 @@
+vi:
+  api:
+    v1:
+      auths:
+        login:
+          success: "Đăng nhập thành công"
+          failure: "Sai tên đăng nhập hoặc mật khẩu"

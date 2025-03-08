@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    attributes:
+      order:
+        statuses:
+          pending: "Pending"
+          confirmed: "Confirmed"
+          preparing: "Preparing"
+          delivering: "Delivering"
+          delivered: "Delivered"
+          cancelled: "Cancelled"
