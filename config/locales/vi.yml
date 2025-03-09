@@ -25,3 +25,6 @@ vi:
             product_exists: "Sản phẩm đã có trong giỏ hàng"
             product_add_error: "Không thể thêm sản phẩm vào giỏ hàng"
             product_not_found: "Không tìm thấy sản phẩm"
+          remove_product:
+            product_removed: "Sản phẩm đã được xóa khỏi giỏ hàng."
+            product_not_found_in_cart: "Sản phẩm không tồn tại trong giỏ hàng."

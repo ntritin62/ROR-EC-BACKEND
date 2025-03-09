@@ -1,12 +1,11 @@
 class Api::V1::Carts::CartsController < ApplicationController
   include Response
-  before_action :authenticate_user!, only: %i(show add_product)
-  before_action :set_cart, only: %i(show add_product)
-  before_action :set_product, only: :add_product
+  before_action :authenticate_user!, only: %i(show add_product remove_product)
+  before_action :set_cart, only: %i(show add_product remove_product)
+  before_action :set_product, only: %i(add_product remove_product)
  
 
   def show
-    @cart = current_user.cart
     render_json(
       status: :ok,
       message: t(".cart_found"),
@@ -16,8 +15,6 @@ class Api::V1::Carts::CartsController < ApplicationController
   end
 
   def add_product
-    @cart = current_user.cart
-
     @cart_item = @cart.cart_items.find_by(product: @product)
 
     if @cart_item
@@ -48,6 +45,30 @@ class Api::V1::Carts::CartsController < ApplicationController
     end
   end
 
+  def remove_product
+    @cart_item = @cart.cart_items.find_by(product: @product)
+    puts "Cart ID: #{@product.id}"
+     puts "Products in cart: #{@cart.cart_items.pluck(:product_id)}"
+  
+    if @cart_item
+      @cart_item.destroy
+      render_json(
+        status: :ok,
+        message: t(".product_removed"),
+        data: CartSerializer.new(@cart),
+        http_status: :ok
+      )
+    else
+      render_json(
+        status: :not_found,
+        message: t(".product_not_found_in_cart"),
+        errors: [t(".product_not_found_in_cart")],
+        http_status: :not_found
+      )
+    end
+  end
+  
+
   private
   def set_product
     @product = Product.find_by(id: params[:product_id].to_s)
@@ -60,8 +81,8 @@ class Api::V1::Carts::CartsController < ApplicationController
       http_status: :not_found
     )
   end
-
+  
   def set_cart
-
+    @cart = current_user.cart
   end
 end
