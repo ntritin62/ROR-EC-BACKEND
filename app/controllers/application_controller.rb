@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
         user_id = decoded_token["user_id"] if decoded_token
         @current_user = User.find_by(id: user_id)
       rescue JWT::DecodeError
+        Rails.logger.error("JWT Decode Error: #{e.message}")
         nil
       end
     end

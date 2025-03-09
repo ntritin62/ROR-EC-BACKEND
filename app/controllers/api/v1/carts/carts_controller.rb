@@ -1,7 +1,19 @@
 class Api::V1::Carts::CartsController < ApplicationController
   include Response
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i(show add_product)
+  before_action :set_cart, only: %i(show add_product)
   before_action :set_product, only: :add_product
+ 
+
+  def show
+    @cart = current_user.cart
+    render_json(
+      status: :ok,
+      message: t(".cart_found"),
+      data: CartSerializer.new(@cart),
+      http_status: :ok,
+    )
+  end
 
   def add_product
     @cart = current_user.cart
@@ -47,5 +59,9 @@ class Api::V1::Carts::CartsController < ApplicationController
       errors: [t(".product_not_found")],
       http_status: :not_found
     )
+  end
+
+  def set_cart
+
   end
 end
