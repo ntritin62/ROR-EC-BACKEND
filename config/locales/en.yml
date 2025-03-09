@@ -14,3 +14,10 @@ en:
         update:
           success: "User updated successfully"
           failure: "Failed to update user"
+      carts:
+        carts:
+          product_not_found: "Product not found"
+          product_added: "Product has been added to the cart"
+          product_exists: "Product already exists in the cart"
+          product_add_error: "Unable to add product to the cart"
+          product_not_found: "Product not found"

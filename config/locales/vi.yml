@@ -14,3 +14,10 @@ vi:
         update:
           success: "Cập nhật người dùng thành công"
           failure: "Cập nhật người dùng thất bại"
+      carts:
+        carts:
+          product_not_found: "Sản phẩm không tìm thấy"
+          product_added: "Sản phẩm đã được thêm vào giỏ hàng"
+          product_exists: "Sản phẩm đã có trong giỏ hàng"
+          product_add_error: "Không thể thêm sản phẩm vào giỏ hàng"
+          product_not_found: "Không tìm thấy sản phẩm"

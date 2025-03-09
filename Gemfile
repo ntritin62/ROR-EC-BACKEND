@@ -2,7 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
-
+gem 'active_model_serializers'
 gem "bootsnap", require: false
 gem "concurrent-ruby", "1.3.4" 
 gem "bcrypt", "~> 3.1.7"

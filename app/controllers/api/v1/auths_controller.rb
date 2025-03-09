@@ -1,5 +1,4 @@
 class Api::V1::AuthsController < ApplicationController
-  skip_before_action :verify_authenticity_token
   before_action :set_user, only: :login
   before_action :authenticate_user!, :user_update_params, only: :update
   def login
@@ -39,7 +38,7 @@ class Api::V1::AuthsController < ApplicationController
   end
 
   def update
-    if @current_user.update(user_update_params)
+    if current_user.update(user_update_params)
       render_json(
         status: :ok,
         message: t(".success"),

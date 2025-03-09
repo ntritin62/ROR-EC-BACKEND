@@ -5,6 +5,10 @@ Rails.application.routes.draw do
         post "login", to: "auths#login"
         post "signup", to: "auths#sign_up"
         put "update_user", to: "auths#update"
+        
+        namespace :carts do
+          post "add_product", to: "carts#add_product"
+        end
       end
     end
   end
