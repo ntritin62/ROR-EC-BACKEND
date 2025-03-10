@@ -11,6 +11,11 @@ Rails.application.routes.draw do
           get "", to: "carts#show"
           delete ":product_id", to: "carts#remove_product"
         end
+
+        namespace :orders do
+          get "stripe", to: "orders#stripe"
+          get "createPaymentIntent", to: "orders#create_payment_intent"
+        end
       end
     end
   end

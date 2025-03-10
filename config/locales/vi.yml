@@ -28,3 +28,8 @@ vi:
           remove_product:
             product_removed: "Sản phẩm đã được xóa khỏi giỏ hàng."
             product_not_found_in_cart: "Sản phẩm không tồn tại trong giỏ hàng."
+      orders:
+        orders:
+          stripe:
+            payment_intent_success: "Tạo Payment Intent thành công"
+            payment_intent_failed: "Tạo Payment Intent thất bại"

@@ -26,3 +26,8 @@ en:
           remove_product:
             product_removed: "Product has been removed from the cart."
             product_not_found_in_cart: "Product not found in the cart."
+      orders:
+        orders:
+          stripe:
+            payment_intent_success: "Payment Intent created successfully"
+            payment_intent_failed: "Failed to create Payment Intent"

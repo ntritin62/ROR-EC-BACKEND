@@ -47,9 +47,6 @@ class Api::V1::Carts::CartsController < ApplicationController
 
   def remove_product
     @cart_item = @cart.cart_items.find_by(product: @product)
-    puts "Cart ID: #{@product.id}"
-     puts "Products in cart: #{@cart.cart_items.pluck(:product_id)}"
-  
     if @cart_item
       @cart_item.destroy
       render_json(
