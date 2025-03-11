@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         namespace :orders do
           get "stripe", to: "orders#stripe"
           get "createPaymentIntent", to: "orders#create_payment_intent"
+          post "createOrderStripe", to: "orders#create_order_stripe"
+          post "createOrderCOD", to: "orders#create_order_cod"
         end
       end
     end

@@ -6,14 +6,15 @@ class Order < ApplicationRecord
   
   enum status: {
     pending: 0,
-    confirmed: 1,
-    preparing: 2,
-    delivering: 3,
-    delivered: 4,
-    cancelled: 5
-  }
+    paid: 1,
+    confirmed: 2,
+    preparing: 3,
+    delivering: 4,
+    delivered: 5,
+    cancelled: 6
+  }, _suffix: true
 
   validates :total, presence: true,
-    numericality: {greater_than_or_equal_to: Settings.value.min_numeric}
+    numericality: {greater_than_or_equal_to: 0}
   validates :status, presence: true
 end

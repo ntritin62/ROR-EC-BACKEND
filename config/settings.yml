@@ -1,5 +1,6 @@
 value:
   max_name: 255
+  min_numeric: 0
   min_user_password: 8
   max_place_length: 500
   max_receiver_name: 300

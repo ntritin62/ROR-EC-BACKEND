@@ -32,4 +32,12 @@ vi:
         orders:
           stripe:
             payment_intent_success: "Tạo Payment Intent thành công"
-            payment_intent_failed: "Tạo Payment Intent thất bại"
+            payment_intent_failed: "Không thể tạo Payment Intent"
+          create_order_stripe:
+            created_successfully: "Đơn hàng đã được tạo thành công"
+            payment_failed: "Thanh toán thất bại"
+            cart_empty: "Giỏ hàng của bạn đang trống."
+          create_order_cod:
+            created_successfully: "Đơn hàng đã được tạo thành công"
+            cart_empty: "Giỏ hàng của bạn đang trống."
+          address_not_found: "Không tìm thấy địa chỉ"

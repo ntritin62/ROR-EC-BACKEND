@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # include ParamSnakeCase
+  include ParamSnakeCase
   include Response
   skip_before_action :verify_authenticity_token
   before_action :set_locale
