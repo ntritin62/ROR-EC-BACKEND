@@ -20,6 +20,7 @@ Rails.application.routes.draw do
           patch "updateOrderStatus", to: "orders#update_order"
           get "showAllMyOrders", to: "orders#user_orders"
           get "", to: "orders#all_orders"
+          get ":order_id", to: "orders#show_order"
         end
       end
     end

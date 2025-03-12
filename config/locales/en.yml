@@ -48,3 +48,6 @@ en:
             fetched_successfully: "Orders fetched successfully."
           user_orders:
             fetched_successfully: "Orders fetched successfully."
+          show_order:
+            fetched_successfully: "Order fetched successfully."
+            not_found: "Order not found."

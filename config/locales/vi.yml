@@ -50,3 +50,6 @@ vi:
             fetched_successfully: "Lấy danh sách đơn hàng thành công."
           user_orders:
             fetched_successfully: "Lấy danh sách đơn hàng thành công."
+          show_order:
+            fetched_successfully: "Lấy thông tin đơn hàng thành công."
+            not_found: "Không tìm thấy đơn hàng."

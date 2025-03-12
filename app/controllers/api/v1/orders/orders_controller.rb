@@ -3,9 +3,8 @@ class Api::V1::Orders::OrdersController < ApplicationController
   before_action :set_cart
   before_action :set_address, only: %i(create_order_stripe create_order_cod)
   before_action :check_cart_empty, only: %i(create_order_stripe create_order_cod)
-  before_action :authenticate_admin!, :set_order, only: %i(update_order all_orders)
+  before_action :authenticate_admin!, :set_order, only: %i(update_order all_orders show_order)
 
-  
   def stripe
     render_json(
       status: :ok,
@@ -176,6 +175,24 @@ class Api::V1::Orders::OrdersController < ApplicationController
     )
   end
 
+  def show_order
+    if @order
+      render_json(
+        status: :ok,
+        message: t(".fetched_successfully"),
+        data: OrderSerializer.new(@order),
+        http_status: :ok
+      )
+    else
+      render_json(
+        status: :not_found,
+        message: t(".not_found"),
+        data: {},
+        http_status: :not_found
+      )
+    end
+  end
+
   private
   def set_order
     @order = Order.find_by(id: params[:order_id])
@@ -188,6 +205,7 @@ class Api::V1::Orders::OrdersController < ApplicationController
       http_status: :not_found
     )
   end
+
   def set_cart
     @cart = current_user.cart
   end
