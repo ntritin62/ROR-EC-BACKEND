@@ -39,3 +39,12 @@ en:
             created_successfully: "Order created successfully"
             cart_empty: "Your cart is empty."
           address_not_found: "Address not found"
+          update_order:
+            updated_successfully: "Order status updated successfully"
+            update_failed: "Failed to update order status"
+            order_not_found: "Order not found"
+            invalid_status: "Invalid order status"
+          all_orders:
+            fetched_successfully: "Orders fetched successfully."
+          user_orders:
+            fetched_successfully: "Orders fetched successfully."

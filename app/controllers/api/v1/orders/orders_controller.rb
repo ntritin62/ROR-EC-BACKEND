@@ -2,7 +2,9 @@ class Api::V1::Orders::OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_cart
   before_action :set_address, only: %i(create_order_stripe create_order_cod)
-  before_action :check_cart_empty, only: %i[create_order_stripe create_order_cod]
+  before_action :check_cart_empty, only: %i(create_order_stripe create_order_cod)
+  before_action :authenticate_admin!, :set_order, only: %i(update_order all_orders)
+
   
   def stripe
     render_json(
@@ -125,7 +127,67 @@ class Api::V1::Orders::OrdersController < ApplicationController
     end
   end
   
+  def update_order
+    if Order.statuses.keys.exclude?(params[:order_status])
+      return render_json(
+        status: :error,
+        message: t(".invalid_status"),
+        data: { error: t(".invalid_status") },
+        http_status: :unprocessable_entity
+      )
+    end
+
+    if @order.update(status: params[:order_status])
+      render_json(
+        status: :ok,
+        message: t(".updated_successfully"),
+        data: { order: @order },
+        http_status: :ok
+      )
+    else
+      render_json(
+        status: :error,
+        message: t(".update_failed"),
+        data: { error: t(".update_failed") },
+        http_status: :unprocessable_entity
+      )
+    end
+  end
+
+  def all_orders
+    orders = Order.includes(:order_items).all.recent
+
+    render_json(
+      status: :ok,
+      message: t(".fetched_successfully"),
+      data: ActiveModelSerializers::SerializableResource.new(orders, each_serializer: OrderSerializer),
+      http_status: :ok
+    )
+  end
+
+  def user_orders
+    orders = current_user.orders.includes(:order_items).recent
+
+    render_json(
+      status: :ok,
+      message: t(".fetched_successfully"),
+      data: ActiveModelSerializers::SerializableResource.new(orders, each_serializer: OrderSerializer),
+      http_status: :ok
+    )
+  end
+
   private
+  def set_order
+    @order = Order.find_by(id: params[:order_id])
+    return if @order.present?
+
+    render_json(
+      status: :not_found,
+      message: t(".order_not_found"),
+      errors: [t(".order_not_found")],
+      http_status: :not_found
+    )
+  end
   def set_cart
     @cart = current_user.cart
   end

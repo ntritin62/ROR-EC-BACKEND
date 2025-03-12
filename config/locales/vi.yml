@@ -41,3 +41,12 @@ vi:
             created_successfully: "Đơn hàng đã được tạo thành công"
             cart_empty: "Giỏ hàng của bạn đang trống."
           address_not_found: "Không tìm thấy địa chỉ"
+          update_order:
+            updated_successfully: "Trạng thái đơn hàng đã được cập nhật thành công"
+            update_failed: "Cập nhật trạng thái đơn hàng thất bại"
+            order_not_found: "Không tìm thấy đơn hàng"
+            invalid_status: "Trạng thái đơn hàng không hợp lệ"
+          all_orders:
+            fetched_successfully: "Lấy danh sách đơn hàng thành công."
+          user_orders:
+            fetched_successfully: "Lấy danh sách đơn hàng thành công."

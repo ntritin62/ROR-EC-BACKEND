@@ -7,14 +7,14 @@ class Order < ApplicationRecord
   enum status: {
     pending: 0,
     paid: 1,
-    confirmed: 2,
-    preparing: 3,
-    delivering: 4,
-    delivered: 5,
-    cancelled: 6
+    delivering: 2,
+    delivered: 3,
+    canceled: 4
   }, _suffix: true
 
   validates :total, presence: true,
     numericality: {greater_than_or_equal_to: 0}
   validates :status, presence: true
+
+  scope :recent, -> { order(created_at: :desc) }
 end

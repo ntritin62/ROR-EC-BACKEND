@@ -17,6 +17,9 @@ Rails.application.routes.draw do
           get "createPaymentIntent", to: "orders#create_payment_intent"
           post "createOrderStripe", to: "orders#create_order_stripe"
           post "createOrderCOD", to: "orders#create_order_cod"
+          patch "updateOrderStatus", to: "orders#update_order"
+          get "showAllMyOrders", to: "orders#user_orders"
+          get "", to: "orders#all_orders"
         end
       end
     end
