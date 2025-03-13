@@ -6,6 +6,9 @@ Rails.application.routes.draw do
         post "signup", to: "auths#sign_up"
         put "update_user", to: "auths#update"
         
+        get "users/showMe", to: "auths#show"
+      
+        
         namespace :carts do
           post "add_product", to: "carts#add_product"
           get "", to: "carts#show"

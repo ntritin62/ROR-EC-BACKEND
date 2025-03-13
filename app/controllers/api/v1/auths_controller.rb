@@ -55,6 +55,17 @@ class Api::V1::AuthsController < ApplicationController
     end
   end
 
+  def show
+    render_json(
+      status: :ok,
+      message: t(".success"),
+      data: {
+        user: UserSerializer.new(current_user)
+      },
+      http_status: :ok
+    )
+  end
+
   private
   def set_user
     @user = User.find_by(email: params[:email])
