@@ -55,3 +55,25 @@ vi:
           show_order:
             fetched_successfully: "Lấy thông tin đơn hàng thành công."
             not_found: "Không tìm thấy đơn hàng."
+      laptops:
+        laptops:
+          show:
+            success: "Thành công"
+            failure: "Đã có lỗi xảy ra"
+            not_found: "Không tìm thấy laptop"
+          index:
+            success: "Thành công"
+            failure: "Đã có lỗi xảy ra"
+            not_found: "Không tìm thấy laptop"
+          create:
+            success: "Thành công"
+            failure: "Đã có lỗi xảy ra"
+            not_found: "Không tìm thấy laptop"
+          update:
+            success: "Thành công"
+            failure: "Đã có lỗi xảy ra"
+            not_found: "Không tìm thấy laptop"
+          destroy:
+            success: "Thành công"
+            failure: "Đã có lỗi xảy ra"
+            not_found: "Không tìm thấy laptop"

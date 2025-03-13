@@ -53,3 +53,25 @@ en:
           show_order:
             fetched_successfully: "Order fetched successfully."
             not_found: "Order not found."
+      laptops:
+        laptops:
+          show:
+            success: "Success"
+            failure: "Something went wrong"
+            not_found: "Laptop not found"
+          index:
+            success: "Success"
+            failure: "Something went wrong"
+            not_found: "Laptop not found"
+          create:
+            success: "Success"
+            failure: "Something went wrong"
+            not_found: "Laptop not found"
+          update:
+            success: "Success"
+            failure: "Something went wrong"
+            not_found: "Laptop not found"
+          destroy:
+            success: "Success"
+            failure: "Something went wrong"
+            not_found: "Laptop not found"

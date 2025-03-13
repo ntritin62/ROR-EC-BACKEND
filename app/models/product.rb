@@ -1,4 +1,10 @@
 class Product < ApplicationRecord
+  REQUIRED_ATTRIBUTES = %i(
+    name desc price status cpu ram hard_disk graphic_card screen 
+    connection_port keyboard audio lan wireless_lan webcam os 
+    battery weight image_url
+  ).freeze
+
   has_many :cart_item, dependent: :destroy
   has_many :order_item, dependent: :destroy
   has_many :orders, through: :order_items
