@@ -31,6 +31,14 @@ Rails.application.routes.draw do
           patch ":id", to: "laptops#update"
           delete ":id", to: "laptops#destroy"
         end
+
+        namespace :addresses do
+          get "showMyAddresses", to: "addresses#index"
+          get ":id", to: "addresses#show"
+          post "", to: "addresses#create"
+          patch ":id", to: "addresses#update"
+          delete ":id", to: "addresses#destroy"
+        end
       end
     end
   end

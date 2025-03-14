@@ -77,3 +77,26 @@ vi:
             success: "Thành công"
             failure: "Đã có lỗi xảy ra"
             not_found: "Không tìm thấy laptop"
+      addresses:
+        addresses:
+          show:
+            success: "Thao tác thành công"
+            failure: "Thao tác thất bại"
+            not_found: "Không tìm thấy địa chỉ"  
+          index:
+            success: "Thao tác thành công"
+            failure: "Thao tác thất bại"
+            not_found: "Không tìm thấy địa chỉ"  
+          create:
+            success: "Thao tác thành công"
+            failure: "Thao tác thất bại"
+            not_found: "Không tìm thấy địa chỉ"  
+          update:
+            success: "Thao tác thành công"
+            failure: "Thao tác thất bại"
+            not_found: "Không tìm thấy địa chỉ"  
+          destroy:
+            success: "Thao tác thành công"
+            failure: "Thao tác thất bại"
+            not_found: "Không tìm thấy địa chỉ"  
+          

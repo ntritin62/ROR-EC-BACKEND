@@ -75,3 +75,25 @@ en:
             success: "Success"
             failure: "Something went wrong"
             not_found: "Laptop not found"
+      addresses:
+        addresses:
+          show:
+            success: "Operation successful"
+            failure: "Operation failed"
+            not_found: "Address not found"
+          index:
+            success: "Operation successful"
+            failure: "Operation failed"
+            not_found: "Address not found"
+          create:
+            success: "Operation successful"
+            failure: "Operation failed"
+            not_found: "Address not found"
+          update:
+            success: "Operation successful"
+            failure: "Operation failed"
+            not_found: "Address not found"
+          destroy:
+            success: "Operation successful"
+            failure: "Operation failed"
+            not_found: "Address not found"
