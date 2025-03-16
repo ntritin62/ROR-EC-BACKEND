@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
         namespace :carts do
           post "add_product", to: "carts#add_product"
-          get "", to: "carts#show"
+          get "showMyCart", to: "carts#show"
           delete ":product_id", to: "carts#remove_product"
         end
 

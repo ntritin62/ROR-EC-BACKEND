@@ -24,7 +24,7 @@ cpu_models = [
     os: Faker::Computer.os,
     battery: "#{Faker::Number.between(from: 3, to: 8)} hours",
     weight: "#{Faker::Number.decimal(l_digits: 1, r_digits: 2)} kg",
-    image_url: Faker::LoremFlickr.image(size: "300x300", search_terms: ['laptop'])
+    image_url: "https://laptopvang.com/wp-content/uploads/2024/02/dell-xps-16-9640-platinum.jpg"
   )
 end
 

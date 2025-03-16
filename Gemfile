@@ -16,6 +16,7 @@ gem "rails", "7.0.5"
 gem "faker"
 gem "sprockets-rails"
 gem "stimulus-rails"
+gem "rack-cors"
 gem "turbo-rails"
 gem "dotenv-rails", groups: [:development, :test]
 gem "jwt"
