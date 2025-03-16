@@ -16,7 +16,7 @@ class Api::V1::Laptops::LaptopsController < ApplicationController
     render_json(
       status: :ok,
       message: t(".success"),
-      data:  ProductSerializer.new(@laptop),
+      data:  ActiveModelSerializers::SerializableResource.new(@laptop),
       http_status: :ok
     )
   end
