@@ -22,7 +22,6 @@ class Api::V1::Addresses::AddressesController < ApplicationController
   end
 
   def create
-    Rails.logger.info "Params nhận được: #{params.inspect}"
     address = current_user.addresses.new(address_params)
     if address.save
       render_json(

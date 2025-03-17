@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       namespace :v1 do
         post "login", to: "auths#login"
         post "signup", to: "auths#sign_up"
-        put "update_user", to: "auths#update"
+        patch "users/updateUser", to: "auths#update"
         get "users/showMe", to: "auths#show"
 
         namespace :carts do
