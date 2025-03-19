@@ -66,6 +66,20 @@ class Api::V1::AuthsController < ApplicationController
     )
   end
 
+  def change_password
+    old_password, new_password, confirm_password = password_params.values_at(:old_password, :new_password, :confirm_password)
+  
+    return unauthorized_error unless current_user.authenticate(old_password)
+    return password_mismatch_error if new_password != confirm_password
+  
+    if current_user.update(password: new_password, password_confirmation: confirm_password)
+      render_json(status: :ok, message: t(".success"), http_status: :ok)
+    else
+      render_json(status: :unprocessable_entity, message: t(".failure"), errors: current_user.errors.full_messages, http_status: :unprocessable_entity)
+    end
+  end
+  
+
   private
   def set_user
     @user = User.find_by(email: params[:email])
@@ -76,6 +90,18 @@ class Api::V1::AuthsController < ApplicationController
   end
 
   def user_update_params
-    params.require(:user).permit(:email,:full_name, :phone_number)
+    params.require(:user).permit(:email, :full_name, :phone_number)
+  end
+
+  def password_params
+    params.permit(:old_password, :new_password, :confirm_password)
+  end
+  
+  def unauthorized_error
+    render_json(status: :unauthorized, message: t(".incorrect_password"), errors: { detail: t(".incorrect_password") }, http_status: :unauthorized)
+  end
+  
+  def password_mismatch_error
+    render_json(status: :unprocessable_entity, message: t(".password_mismatch"), errors: { detail: t(".password_mismatch") }, http_status: :unprocessable_entity)
   end
 end

@@ -16,6 +16,11 @@ en:
           failure: "Failed to update user"
         show:
           success: "User information retrieved successfully"
+        change_password:
+          incorrect_password: "Incorrect current password"
+          password_mismatch: "New password does not match"
+          success: "Password changed successfully"
+          failure: "Failed to change password, please try again"
       carts:
         carts:
           show:
