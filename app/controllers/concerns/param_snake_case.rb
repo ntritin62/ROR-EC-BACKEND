@@ -7,9 +7,8 @@ module ParamSnakeCase
 
   private
 
-  
   def request_has_body?
-    request.request_parameters.present?
+    request.parameters.present?
   end
 
   def convert_params_to_snake_case

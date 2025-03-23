@@ -1,5 +1,4 @@
 class Api::V1::Carts::CartsController < ApplicationController
-  include Response
   before_action :authenticate_user!, only: %i(show add_product remove_product)
   before_action :set_cart, only: %i(show add_product remove_product)
   before_action :set_product, only: %i(add_product remove_product)
@@ -19,10 +18,10 @@ class Api::V1::Carts::CartsController < ApplicationController
 
     if @cart_item
       render_json(
-        status: :unprocessable_entity,
+        status: :ok,
         message: t(".product_exists"),
         data: CartSerializer.new(@cart),
-        http_status: :unprocessable_entity,
+        http_status: :ok,
       )
     else
       @cart_item = @cart.cart_items.create(product: @product)
@@ -68,7 +67,7 @@ class Api::V1::Carts::CartsController < ApplicationController
 
   private
   def set_product
-    @product = Product.find_by(id: params[:product_id].to_s)
+    @product = Product.find_by(id: params[:product_id])
     return if @product.present?
 
     render_json(

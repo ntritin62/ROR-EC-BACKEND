@@ -9,9 +9,9 @@ Rails.application.routes.draw do
         patch "users/updateUserPassword", to: "auths#change_password"
 
         namespace :carts do
-          post "add_product", to: "carts#add_product"
+          post "addItemToCart", to: "carts#add_product"
           get "showMyCart", to: "carts#show"
-          delete ":product_id", to: "carts#remove_product"
+          delete "deleteItemInCart", to: "carts#remove_product"
         end
 
         namespace :orders do
