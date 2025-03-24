@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         patch "users/updateUser", to: "auths#update"
         get "users/showMe", to: "auths#show"
         patch "users/updateUserPassword", to: "auths#change_password"
+        get "users/", to: "auths#index"
 
         namespace :carts do
           post "addItemToCart", to: "carts#add_product"

@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   REQUIRED_ATTRIBUTES = %i(
-    name desc price status cpu ram hard_disk graphic_card screen 
+    name price status cpu ram hard_disk graphic_card screen 
     connection_port keyboard audio lan wireless_lan webcam os 
     battery weight image_url
   ).freeze
@@ -10,7 +10,6 @@ class Product < ApplicationRecord
   has_many :orders, through: :order_items
 
   validates :name, presence: true, length: { maximum: 255 }
-  validates :desc, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :status, presence: true
   validates :cpu, :ram, :hard_disk, :graphic_card, :screen, :connection_port, 

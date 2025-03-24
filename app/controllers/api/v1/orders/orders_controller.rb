@@ -3,7 +3,8 @@ class Api::V1::Orders::OrdersController < ApplicationController
   before_action :set_cart
   before_action :set_address, only: %i(create_order_stripe create_order_cod)
   before_action :check_cart_empty, only: %i(create_order_stripe create_order_cod)
-  before_action :authenticate_admin!, :set_order, only: %i(update_order all_orders show_order)
+  before_action :authenticate_admin!, only: %i(update_order all_orders show_order)
+  before_action :set_order, only: %i(update_order show_order)
 
   def stripe
     render_json(

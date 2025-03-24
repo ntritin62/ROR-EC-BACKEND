@@ -31,6 +31,7 @@ class Api::V1::Laptops::LaptopsController < ApplicationController
         http_status: :created
       )
     else
+      Rails.logger.debug "❌ Errors: #{laptop.errors.full_messages}"
       render_json(
         status: :unprocessable_entity,
         message: t(".failure"),
@@ -84,6 +85,6 @@ class Api::V1::Laptops::LaptopsController < ApplicationController
   end
 
   def laptop_params
-    params.permit Product::REQUIRED_ATTRIBUTES
+    params.require(:laptop).permit Product::REQUIRED_ATTRIBUTES
   end
 end

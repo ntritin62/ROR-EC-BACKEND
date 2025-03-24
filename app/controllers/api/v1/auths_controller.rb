@@ -1,6 +1,7 @@
 class Api::V1::AuthsController < ApplicationController
   before_action :set_user, only: :login
-  before_action :authenticate_user!, :user_update_params, only: :update
+  before_action :authenticate_user!, :user_update_params, only: %i(update)
+  before_action :authenticate_user!, :authenticate_admin!, only: :index
   def login
     if @user&.authenticate(params[:password])
       render_json(
@@ -77,6 +78,16 @@ class Api::V1::AuthsController < ApplicationController
     else
       render_json(status: :unprocessable_entity, message: t(".failure"), errors: current_user.errors.full_messages, http_status: :unprocessable_entity)
     end
+  end
+  
+  def index
+    users = User.all
+    render_json(
+      status: :ok,
+      message: t(".success"),
+      data: users.map { |user| UserSerializer.new(user) },
+      http_status: :ok
+    )
   end
   
 
