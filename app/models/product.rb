@@ -17,4 +17,6 @@ class Product < ApplicationRecord
             :weight, presence: true
 
   validates :image_url, presence: true, format: {with: Settings.value.valid_url}
+
+  scope :recent, -> { order(updated_at: :desc) }
 end

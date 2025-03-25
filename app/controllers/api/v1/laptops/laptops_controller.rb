@@ -3,7 +3,7 @@ class Api::V1::Laptops::LaptopsController < ApplicationController
   before_action :set_product, only: %i[show update destroy]
 
   def index
-    laptops = Product.all
+    laptops = Product.all.recent
     render_json(
       status: :ok,
       message: t(".success"),
@@ -31,7 +31,6 @@ class Api::V1::Laptops::LaptopsController < ApplicationController
         http_status: :created
       )
     else
-      Rails.logger.debug "❌ Errors: #{laptop.errors.full_messages}"
       render_json(
         status: :unprocessable_entity,
         message: t(".failure"),
