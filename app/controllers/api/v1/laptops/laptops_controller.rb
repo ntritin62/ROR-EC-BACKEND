@@ -3,7 +3,10 @@ class Api::V1::Laptops::LaptopsController < ApplicationController
   before_action :set_product, only: %i[show update destroy]
 
   def index
-    laptops = Product.all.recent
+    laptops = Rails.cache.fetch("laptops", expires_in: 5.minutes) do
+      Product.all.recent.to_a
+    end
+
     render_json(
       status: :ok,
       message: t(".success"),
@@ -42,6 +45,8 @@ class Api::V1::Laptops::LaptopsController < ApplicationController
 
   def update
     if @laptop.update(laptop_params)
+      Rails.cache.delete("laptop_#{@laptop.id}")
+
       render_json(
         status: :ok,
         message: t(".success"),
@@ -60,6 +65,7 @@ class Api::V1::Laptops::LaptopsController < ApplicationController
 
   def destroy
     if @laptop.destroy
+      Rails.cache.delete("laptop_#{@laptop.id}")
       render_json(
         status: :ok,
         message: t(".success"),
@@ -77,7 +83,10 @@ class Api::V1::Laptops::LaptopsController < ApplicationController
   private
 
   def set_product
-    @laptop = Product.find_by(id: params[:id])
+    @laptop = Rails.cache.fetch("laptop_#{params[:id]}", expires_in: 5.minutes) do
+      Product.find_by(id: params[:id])
+    end
+
     return if @laptop.present?
 
     render_json(status: :not_found, message: t(".not_found"), http_status: :not_found)
