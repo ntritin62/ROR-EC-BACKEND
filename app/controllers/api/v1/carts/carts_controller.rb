@@ -5,10 +5,13 @@ class Api::V1::Carts::CartsController < ApplicationController
  
 
   def show
+    cart_data = Rails.cache.fetch("user_#{current_user.id}_cart", expires_in: 5.minutes) do
+      CartSerializer.new(@cart).as_json
+    end
     render_json(
       status: :ok,
       message: t(".cart_found"),
-      data: CartSerializer.new(@cart),
+      data: cart_data,
       http_status: :ok,
     )
   end
@@ -27,6 +30,7 @@ class Api::V1::Carts::CartsController < ApplicationController
       @cart_item = @cart.cart_items.create(product: @product)
 
       if @cart_item.persisted?
+        Rails.cache.delete("user_#{current_user.id}_cart")
         render_json(
           status: :created,
           message: t(".product_added"),
@@ -48,6 +52,7 @@ class Api::V1::Carts::CartsController < ApplicationController
     @cart_item = @cart.cart_items.find_by(product: @product)
     if @cart_item
       @cart_item.destroy
+      Rails.cache.delete("user_#{current_user.id}_cart")
       render_json(
         status: :ok,
         message: t(".product_removed"),
@@ -67,7 +72,10 @@ class Api::V1::Carts::CartsController < ApplicationController
 
   private
   def set_product
-    @product = Product.find_by(id: params[:product_id])
+    @product = Rails.cache.fetch("laptop_#{params[:product_id]}", expires_in: 5.minutes) do
+      Product.find_by(id: params[:product_id])
+    end
+    
     return if @product.present?
 
     render_json(
