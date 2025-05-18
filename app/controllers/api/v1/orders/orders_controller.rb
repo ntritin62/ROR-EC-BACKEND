@@ -68,6 +68,7 @@ class Api::V1::Orders::OrdersController < ApplicationController
         end
 
         @cart.clear_cart_items
+        Rails.cache.delete("user_#{current_user.id}_orders")
 
         render_json(
           status: :created,
@@ -110,6 +111,7 @@ class Api::V1::Orders::OrdersController < ApplicationController
       end
   
       @cart.clear_cart_items
+      Rails.cache.delete("user_#{current_user.id}_orders")
   
       render_json(
         status: :created,
@@ -138,6 +140,8 @@ class Api::V1::Orders::OrdersController < ApplicationController
     end
 
     if @order.update(status: params[:order_status])
+      Rails.cache.delete("order_#{@order.id}")
+      Rails.cache.delete("user_#{@order.user_id}_orders")
       render_json(
         status: :ok,
         message: t(".updated_successfully"),
@@ -155,23 +159,31 @@ class Api::V1::Orders::OrdersController < ApplicationController
   end
 
   def all_orders
-    orders = Order.includes(:order_items).all.recent
-
+    orders_json = Rails.cache.fetch("all_orders", expires_in: 5.minutes) do
+      orders = Order.includes(:order_items).all.recent
+      ActiveModelSerializers::SerializableResource.new(orders, each_serializer: OrderSerializer).as_json
+    end
+  
     render_json(
       status: :ok,
       message: t(".fetched_successfully"),
-      data: ActiveModelSerializers::SerializableResource.new(orders, each_serializer: OrderSerializer),
+      data: orders_json,
       http_status: :ok
     )
   end
 
   def user_orders
-    orders = current_user.orders.includes(:order_items).recent
-
+    cache_key = "user_orders_#{current_user.id}"
+    
+    orders_json = Rails.cache.fetch(cache_key, expires_in: 5.minutes) do
+      orders = current_user.orders.includes(:order_items).recent
+      ActiveModelSerializers::SerializableResource.new(orders, each_serializer: OrderSerializer).as_json
+    end
+  
     render_json(
       status: :ok,
       message: t(".fetched_successfully"),
-      data: ActiveModelSerializers::SerializableResource.new(orders, each_serializer: OrderSerializer),
+      data: orders_json,
       http_status: :ok
     )
   end
@@ -196,7 +208,9 @@ class Api::V1::Orders::OrdersController < ApplicationController
 
   private
   def set_order
-    @order = Order.find_by(id: params[:order_id])
+    @order = Rails.cache.fetch("order_#{params[:order_id]}", expires_in: 5.minutes) do
+      Order.find_by(id: params[:order_id])
+    end
     return if @order.present?
 
     render_json(
