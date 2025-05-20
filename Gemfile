@@ -9,6 +9,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "config"
 gem "importmap-rails"
 gem "jbuilder"
+gem 'karafka'
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "stripe"

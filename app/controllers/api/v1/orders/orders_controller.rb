@@ -112,7 +112,9 @@ class Api::V1::Orders::OrdersController < ApplicationController
   
       @cart.clear_cart_items
       Rails.cache.delete("user_#{current_user.id}_orders")
-  
+
+      Kafka::OrderProducer.send_order_created(order)
+      
       render_json(
         status: :created,
         message: t(".created_successfully"),
