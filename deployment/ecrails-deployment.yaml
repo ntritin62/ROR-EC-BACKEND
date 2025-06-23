@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecrails
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecrails
+  template:
+    metadata:
+      labels:
+        app: ecrails
+    spec:
+      containers:
+        - name: ecrails
+          image: ntritin0602/ecrails
+          env:
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: rails-config
+                  key: DB_HOST
+            - name: DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: rails-config
+                  key: DB_USERNAME
+            - name: DB_NAME_DEVELOPMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: rails-config
+                  key: DB_NAME_DEVELOPMENT
+            - name: DB_NAME_TEST
+              valueFrom:
+                configMapKeyRef:
+                  name: rails-config
+                  key: DB_NAME_TEST
+            - name: DB_NAME_PRODUCTION
+              valueFrom:
+                configMapKeyRef:
+                  name: rails-config
+                  key: DB_NAME_PRODUCTION
+            - name: DB_USERNAME_PRODUCTION
+              valueFrom:
+                configMapKeyRef:
+                  name: rails-config
+                  key: DB_USERNAME_PRODUCTION
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rails-secret
+                  key: DB_PASSWORD
+            - name: EC_BACKEND_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rails-secret
+                  key: EC_BACKEND_DATABASE_PASSWORD
+            - name: AUTH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: rails-secret
+                  key: AUTH_SECRET
+            - name: STRIPE_PUBLISHABLE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: rails-secret
+                  key: STRIPE_PUBLISHABLE_KEY
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: rails-secret
+                  key: STRIPE_SECRET_KEY
+          ports:
+            - containerPort: 3000

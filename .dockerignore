@@ -1,0 +1,27 @@
+# Bỏ thư mục không cần thiết
+log/*
+tmp/*
+node_modules/
+vendor/bundle
+public/assets
+public/packs
+coverage/
+storage/
+deployment/
+
+# Bỏ các file hệ thống / IDE
+*.swp
+*.bak
+*.tmp
+*.log
+*.pid
+*.sublime*
+*.vscode
+.DS_Store
+
+# Git
+.git
+.gitignore
+
+# Env (nếu không muốn copy vào image)
+.env
